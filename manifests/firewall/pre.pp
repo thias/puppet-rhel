@@ -1,50 +1,79 @@
 # Class: rhel::firewall::pre
 #
 class rhel::firewall::pre (
+  $ipv6,
   $icmp_limit,
 ) {
 
   # Break dependency cycle
   Firewall { require => undef }
 
-  firewall { '001 state related established accept':
-    chain  => 'INPUT',
-    proto  => 'all',
-    state  => [ 'RELATED', 'ESTABLISHED' ],
-    action => 'accept',
+  rhel::firewall::dualstack { '001 state related established accept':
+    rules => {
+      action => 'accept',
+      chain  => 'INPUT',
+      proto  => 'all',
+      state  => [ 'RELATED', 'ESTABLISHED' ],
+    },
   }
 
+  # Different protocols, icmp vs. ipv6-icmp
   if $icmp_limit {
     firewall { '002 icmp drop timestamp-request':
-      chain  => 'INPUT',
-      proto  => 'icmp',
-      icmp   => 'timestamp-request',
       action => 'drop',
+      chain  => 'INPUT',
+      icmp   => 'timestamp-request',
+      proto  => 'icmp',
     }
     firewall { '003 icmp limit rate':
-      chain  => 'INPUT',
-      proto  => 'icmp',
-      limit  => '50/s',
       action => 'accept',
+      chain  => 'INPUT',
+      limit  => '50/sec',
+      proto  => 'icmp',
     }
     firewall { '004 icmp drop':
+      action => 'drop',
       chain  => 'INPUT',
       proto  => 'icmp',
-      action => 'drop',
+    }
+    if $ipv6 {
+      firewall { '003 ipv6-icmp limit rate':
+        action   => 'accept',
+        chain    => 'INPUT',
+        limit    => '50/sec',
+        proto    => 'ipv6-icmp',
+        provider => 'ip6tables',
+      }
+      firewall { '004 ipv6-icmp drop':
+        action   => 'drop',
+        chain    => 'INPUT',
+        proto    => 'ipv6-icmp',
+        provider => 'ip6tables',
+      }
     }
   } else {
     firewall { '003 icmp accept':
+      action => 'accept',
       chain  => 'INPUT',
       proto  => 'icmp',
-      action => 'accept',
+    }
+    if $ipv6 {
+      firewall { '003 ipv6-icmp accept':
+        action   => 'accept',
+        chain    => 'INPUT',
+        proto    => 'ipv6-icmp',
+        provider => 'ip6tables',
+      }
     }
   }
 
-  firewall { '005 lo accept':
-    chain   => 'INPUT',
-    proto   => 'all',
-    iniface => 'lo',
-    action  => 'accept',
+  rhel::firewall::dualstack { '005 lo accept':
+    rules => {
+      action  => 'accept',
+      chain   => 'INPUT',
+      iniface => 'lo',
+      proto   => 'all',
+    },
   }
 
 }
