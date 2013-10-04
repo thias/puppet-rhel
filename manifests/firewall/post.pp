@@ -8,9 +8,6 @@ class rhel::firewall::post (
   $ipv6_reject_with = undef,
 ) {
 
-notice("ipv4_reject_with: ${ipv4_reject_with}")
-notice("ipv6_reject_with: ${ipv6_reject_with}")
-
   # Break dependency cycle
   Firewall { before => undef }
 
