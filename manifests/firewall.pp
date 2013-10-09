@@ -4,9 +4,9 @@ class rhel::firewall (
   $ipv6             = true,
   $icmp_limit       = false,
   $ipv4_action      = 'reject',
-  $ipv4_reject_with = undef,
+  $ipv4_reject_with = 'icmp-port-unreachable',
   $ipv6_action      = 'reject',
-  $ipv6_reject_with = undef,
+  $ipv6_reject_with = 'icmp6-port-unreachable',
 ) {
 
   class { '::firewall': }
