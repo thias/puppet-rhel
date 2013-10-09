@@ -71,3 +71,16 @@ rhel::firewall::portknock:
       - '22'
 ```
 
+## Virtual
+
+This is a class which can be safely included on all nodes, and will tweak only
+virtual nodes based on the `is_virtual` fact.
+
+```puppet
+class { '::rhel::virtual': }
+```
+
+Features include :
+* Making sure `acpid` is installed and running for `virsh shutdown` to work from the
+  hypervisor.
+
