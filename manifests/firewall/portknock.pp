@@ -1,12 +1,11 @@
 # Define: rhel::firewall::portknock
 #
-#   portknock { 'ssh':
-#     port1  => 32766,
-#     port2  => 8190,
-#     port3  => 16382,
-#     dports => [ 22 ],
+#   portknock { 'SSH':
+#     port1  => '1234',
+#     port2  => '2345',
+#     port3  => '3456(,
+#     dports => [ '22' ],
 #   }
-#
 #
 define rhel::firewall::portknock (
   $port1,
