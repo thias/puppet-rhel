@@ -58,3 +58,16 @@ rhel::firewall::ipv4_reject_with: 'icmp-host-prohibited'
 rhel::firewall::ipv6_reject_with: 'icmp6-adm-prohibited'
 ```
 
+Port knocking with 3 ports is available to protect any tcp port(s).
+Hiera example :
+
+```yaml
+rhel::firewall::portknock:
+  SSH:
+    port1: '1234'
+    port2: '2345'
+    port3: '3456'
+    dports:
+      - '22'
+```
+

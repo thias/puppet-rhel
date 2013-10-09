@@ -7,6 +7,7 @@ class rhel::firewall (
   $ipv4_reject_with = 'icmp-port-unreachable',
   $ipv6_action      = 'reject',
   $ipv6_reject_with = 'icmp6-port-unreachable',
+  $portknock        = {},
 ) {
 
   class { '::firewall': }
@@ -23,6 +24,9 @@ class rhel::firewall (
     ipv6_action      => $ipv6_action,
     ipv6_reject_with => $ipv6_reject_with,
   }
+
+  # Optional portknock resources to be created
+  create_resources(rhel::firewall::portknock,$portknock)
 
 }
 

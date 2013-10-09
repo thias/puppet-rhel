@@ -6,4 +6,4 @@ license 'Apache 2.0'
 summary 'RHEL specific configuration module'
 description "Configure Red Hat Enterprise Linux specific files and services."
 project_page 'https://github.com/thias/puppet-rhel'
-dependency 'puppetlabs/firewall', '>= 0.4.0'
+dependency 'puppetlabs/firewall', '>= 0.4.1'
