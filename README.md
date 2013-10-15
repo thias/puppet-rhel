@@ -108,3 +108,16 @@ rhel::net::ifalias { 'eth0:1':
 }
 ```
 
+### EPEL
+
+Enable or disable the EPEL repository for Red Hat Enterprise Linux :
+
+```puppet
+include rhel::epel
+```
+
+To remove it :
+```puppet
+class { 'rhel::epel': ensure => absent }
+```
+
