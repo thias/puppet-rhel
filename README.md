@@ -71,7 +71,7 @@ rhel::firewall::portknock:
       - '22'
 ```
 
-## Virtual
+### Virtual
 
 This is a class which can be safely included on all nodes, and will tweak only
 virtual nodes based on the `is_virtual` fact.
@@ -83,4 +83,54 @@ class { '::rhel::virtual': }
 Features include :
 * Making sure `acpid` is installed and running for `virsh shutdown` to work from the
   hypervisor.
+
+### Yum Update from Cron
+
+Simple shell script and cron job to automatically run `yum update` at 10:05 on
+weekdays (+ a 3-10min wait time to avoid mass parallel downloads) :
+
+```puppet
+include yum-cron
+```
+
+Many parameters can be changed. Example to have a weekly run on Monday at 6AM
+completely silent (no cron output email sent out) :
+
+```puppet
+class { 'yum-cron':
+  cron_command => '/usr/local/sbin/yum-cron &>/dev/null',
+  cron_hour    => '06',
+  cron_minute  => '00',
+  cron_weekday => '1',
+}
+```
+
+### Network IP Address Alias
+
+Manage network interfaces IP address aliases :
+
+```puppet
+rhel::net::ifalias { 'eth0:0':
+  ipaddr => '10.0.0.1', prefix => '32',
+}
+```
+
+```puppet
+rhel::net::ifalias { 'eth0:1':
+  ensure => absent,
+}
+```
+
+### EPEL
+
+Enable or disable the EPEL repository for Red Hat Enterprise Linux :
+
+```puppet
+include rhel::epel
+```
+
+To remove it :
+```puppet
+class { 'rhel::epel': ensure => absent }
+```
 
