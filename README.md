@@ -92,3 +92,15 @@ class { 'yum-cron':
 }
 ```
 
+### Network IP Address Alias
+
+Manage network interfaces IP address aliases :
+
+rhel::net::ifalias { 'eth0:0':
+  ipaddr => '10.0.0.1', prefix => '32',
+}
+
+rhel::net::ifalias { 'eth0:1':
+  ensure => absent,
+}
+

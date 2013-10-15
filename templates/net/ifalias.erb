@@ -1,0 +1,8 @@
+DEVICE=<%= @title %>
+IPADDR=<%= @ipaddr %>
+<% if !@netmask.empty? -%>
+NETMASK=<%= @netmask %>
+<% end -%>
+<% if !@prefix.empty? -%>
+PREFIX=<%= @prefix %>
+<% end -%>
