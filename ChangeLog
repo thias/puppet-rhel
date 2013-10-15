@@ -1,3 +1,4 @@
+2013-10-15 - 0.2.0
 * Fix defaults for IPv4/IPv6 INPUT chains.
 * Add very useful 3-port port knocking feature.
 * Add yum-cron class.
