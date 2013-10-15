@@ -1,5 +1,6 @@
 * Fix defaults for IPv4/IPv6 INPUT chains.
 * Add very useful 3-port port knocking feature.
+* Add yum-cron class.
 
 2013-10-03 - 0.1.0
 * Initial module release.
