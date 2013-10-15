@@ -96,11 +96,15 @@ class { 'yum-cron':
 
 Manage network interfaces IP address aliases :
 
+```puppet
 rhel::net::ifalias { 'eth0:0':
   ipaddr => '10.0.0.1', prefix => '32',
 }
+```
 
+```puppet
 rhel::net::ifalias { 'eth0:1':
   ensure => absent,
 }
+```
 
