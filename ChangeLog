@@ -1,5 +1,6 @@
 * Add virtual class.
 * Add firewall::proto_dport_source hack for array sources.
+* Support empty port meaning all ports in proto_dport_source.
 
 2013-10-15 - 0.2.0
 * Fix defaults for IPv4/IPv6 INPUT chains.

@@ -71,6 +71,18 @@ rhel::firewall::portknock:
       - '22'
 ```
 
+The original `firewall` module doesn't support passing an array of IP addresses
+to the `$source` parameter. To overcome this limitation, the
+`rhel::firewall::proto_dport_source` definition can help :
+```puppet
+$admin_networks = [ '10.64.32.0/24', '192.168.23.4' ]
+$proto_dport_admin_networks = prefix($admin_networks, 'tcp_8091_')
+rhel::firewall::proto_dport_source { $proto_dport_admin_networks: }
+```
+The above will open up port 8091/tcp from a network and an address. The syntax
+for the `$title` is `<proto>_<dport>_<address>` where `<proto>` can be `all`
+and `dport` can be empty to also mean all.
+
 ### Virtual
 
 This is a class which can be safely included on all nodes, and will tweak only

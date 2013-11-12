@@ -5,9 +5,12 @@ define rhel::firewall::proto_dport_source (
   $ensure = present,
 ) {
 
-  $proto  = regsubst($title,'^([^_]+)_([^_]+)_([^_]+)$','\1')
-  $dport  = regsubst($title,'^([^_]+)_([^_]+)_([^_]+)$','\2')
-  $source = regsubst($title,'^([^_]+)_([^_]+)_([^_]+)$','\3')
+  $proto  = regsubst($title,'^([^_]+)_([^_]*)_([^_]+)$','\1')
+  $dport  = regsubst($title,'^([^_]+)_([^_]*)_([^_]+)$','\2')
+  $source = regsubst($title,'^([^_]+)_([^_]*)_([^_]+)$','\3')
+
+  # Empty values means 'any' - must pass undef to firewall for this to work
+  if $dport != '' { $final_dport = $dport }
 
   if $source =~ /:/ {
     $provider = 'ip6tables'
@@ -19,7 +22,7 @@ define rhel::firewall::proto_dport_source (
     ensure   => $ensure,
     action   => $action,
     chain    => $chain,
-    dport    => $dport,
+    dport    => $final_dport,
     proto    => $proto,
     source   => $source,
     provider => $provider,
