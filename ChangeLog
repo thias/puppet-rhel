@@ -1,3 +1,4 @@
+2013-11-21 - 0.2.1
 * Add virtual class.
 * Add firewall::proto_dport_source hack for array sources.
 * Support empty port meaning all ports in proto_dport_source.
