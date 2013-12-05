@@ -7,3 +7,4 @@ summary 'RHEL specific configuration module'
 description "Configure Red Hat Enterprise Linux specific files and services."
 project_page 'https://github.com/thias/puppet-rhel'
 dependency 'puppetlabs/firewall', '>= 0.4.1'
+dependency 'puppetlabs/stdlib', '>= 0.2.0'

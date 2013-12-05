@@ -18,7 +18,8 @@ class rhel::firewall::pre (
   }
 
   # Different protocols, icmp vs. ipv6-icmp
-  if $icmp_limit {
+  if $icmp_limit != false {
+    validate_re($icmp_limit, '^\d+$', '$icmp_limit must be an integer')
     firewall { '002 icmp drop timestamp-request':
       action => 'drop',
       chain  => 'INPUT',
@@ -28,7 +29,7 @@ class rhel::firewall::pre (
     firewall { '003 icmp limit rate':
       action => 'accept',
       chain  => 'INPUT',
-      limit  => '50/sec',
+      limit  => "${icmp_limit}/sec",
       proto  => 'icmp',
     }
     firewall { '004 icmp drop':
@@ -40,7 +41,7 @@ class rhel::firewall::pre (
       firewall { '003 ipv6-icmp limit rate':
         action   => 'accept',
         chain    => 'INPUT',
-        limit    => '50/sec',
+        limit    => "${icmp_limit}/sec",
         proto    => 'ipv6-icmp',
         provider => 'ip6tables',
       }
