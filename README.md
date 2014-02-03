@@ -74,11 +74,13 @@ rhel::firewall::portknock:
 The original `firewall` module doesn't support passing an array of IP addresses
 to the `$source` parameter. To overcome this limitation, the
 `rhel::firewall::proto_dport_source` definition can help :
+
 ```puppet
 $admin_networks = [ '10.64.32.0/24', '192.168.23.4' ]
 $proto_dport_admin_networks = prefix($admin_networks, 'tcp_8091_')
 rhel::firewall::proto_dport_source { $proto_dport_admin_networks: }
 ```
+
 The above will open up port 8091/tcp from a network and an address. The syntax
 for the `$title` is `<proto>_<dport>_<address>` where `<proto>` can be `all`
 and `dport` can be empty to also mean all, or multiple ports separated by
@@ -103,14 +105,14 @@ Simple shell script and cron job to automatically run `yum update` at 10:05 on
 weekdays (+ a 3-10min wait time to avoid mass parallel downloads) :
 
 ```puppet
-include yum-cron
+include '::rhel::yum-cron'
 ```
 
 Many parameters can be changed. Example to have a weekly run on Monday at 6AM
 completely silent (no cron output email sent out) :
 
 ```puppet
-class { 'yum-cron':
+class { '::rhel::yum-cron':
   cron_command => '/usr/local/sbin/yum-cron &>/dev/null',
   cron_hour    => '06',
   cron_minute  => '00',
@@ -139,11 +141,11 @@ rhel::net::ifalias { 'eth0:1':
 Enable or disable the EPEL repository for Red Hat Enterprise Linux :
 
 ```puppet
-include rhel::epel
+include '::rhel::epel'
 ```
 
 To remove it :
 ```puppet
-class { 'rhel::epel': ensure => absent }
+class { '::rhel::epel': ensure => absent }
 ```
 
