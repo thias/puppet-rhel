@@ -81,7 +81,8 @@ rhel::firewall::proto_dport_source { $proto_dport_admin_networks: }
 ```
 The above will open up port 8091/tcp from a network and an address. The syntax
 for the `$title` is `<proto>_<dport>_<address>` where `<proto>` can be `all`
-and `dport` can be empty to also mean all.
+and `dport` can be empty to also mean all, or multiple ports separated by
+commas.
 
 ### Virtual
 
