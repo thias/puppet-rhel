@@ -86,6 +86,12 @@ for the `$title` is `<proto>_<dport>_<address>` where `<proto>` can be `all`
 and `dport` can be empty to also mean all, or multiple ports separated by
 commas.
 
+Masquerade class, one liner to enable masquerading of all 3 RFC1918 networks :
+
+```puppet
+class { '::rhel::firewall::masquerade': outiface => 'br0' }
+```
+
 ### Virtual
 
 This is a class which can be safely included on all nodes, and will tweak only
