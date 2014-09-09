@@ -1,5 +1,5 @@
 name 'thias-rhel'
-version '0.2.3'
+version '1.0.0'
 source 'git://github.com/thias/puppet-rhel'
 author 'Matthias Saou'
 license 'Apache 2.0'
