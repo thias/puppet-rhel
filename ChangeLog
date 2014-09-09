@@ -1,3 +1,5 @@
+* Fix in firewall::pre class for when ipv6 is false for rhel::firewall.
+
 2014-04-28 - 0.2.3
 * Add rhel::firewall::masquerade class.
 

@@ -9,6 +9,7 @@ class rhel::firewall::pre (
   Firewall { require => undef }
 
   rhel::firewall::dualstack { '001 state related established accept':
+    ipv6  => $ipv6,
     rules => {
       action => 'accept',
       chain  => 'INPUT',
@@ -69,6 +70,7 @@ class rhel::firewall::pre (
   }
 
   rhel::firewall::dualstack { '005 lo accept':
+    ipv6  => $ipv6,
     rules => {
       action  => 'accept',
       chain   => 'INPUT',
