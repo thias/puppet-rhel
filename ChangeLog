@@ -1,3 +1,5 @@
+* Manage ip6tables service until the puppetlabs firewall module does.
+
 2014-09-09 - 1.0.0
 * Fix in firewall::pre class for when ipv6 is false for rhel::firewall.
 

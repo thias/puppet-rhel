@@ -14,6 +14,15 @@ class rhel::firewall (
 
   class { '::firewall': }
 
+  # FIXME : Until the 'firewall::linux::redhat' class gets updated...
+  if $ipv6 {
+    service { 'ip6tables':
+      ensure    => 'running',
+      enable    => true,
+      hasstatus => true,
+    }
+  }
+
   class { '::rhel::firewall::pre':
     ipv6       => $ipv6,
     icmp_limit => $icmp_limit,
