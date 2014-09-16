@@ -1,3 +1,5 @@
+* Add useful rhel::firewall::notrack definition.
+
 2014-09-15 - 1.0.1
 * Manage ip6tables service until the puppetlabs firewall module does.
 

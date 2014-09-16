@@ -92,6 +92,13 @@ Masquerade class, one liner to enable masquerading of all 3 RFC1918 networks :
 class { '::rhel::firewall::masquerade': outiface => 'br0' }
 ```
 
+NOTRACK definition, to disable connection tracking for certain ports :
+
+```
+rhel::firewall::notrack { '100 notrack http': iface => 'eth0', port => '80' }
+rhel::firewall::notrack { '110 notrack lo': iface => 'lo' }
+```
+
 ### Virtual
 
 This is a class which can be safely included on all nodes, and will tweak only
