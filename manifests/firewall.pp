@@ -50,6 +50,9 @@ class rhel::firewall (
 
   # Optional portknock resources to be created
   create_resources(rhel::firewall::portknock,$portknock)
+  Rhel::Firewall::Dualstack {
+    ipv6 => $ipv6,
+  }
 
 }
 
