@@ -1,3 +1,5 @@
+* Rename yum-cron class to yum_cron to avoid forbidden character.
+
 2014-11-11 - 1.0.2
 * Add useful rhel::firewall::notrack definition.
 

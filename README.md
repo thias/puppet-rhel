@@ -118,14 +118,14 @@ Simple shell script and cron job to automatically run `yum update` at 10:05 on
 weekdays (+ a 3-10min wait time to avoid mass parallel downloads) :
 
 ```puppet
-include '::rhel::yum-cron'
+include '::rhel::yum_cron'
 ```
 
 Many parameters can be changed. Example to have a weekly run on Monday at 6AM
 completely silent (no cron output email sent out) :
 
 ```puppet
-class { '::rhel::yum-cron':
+class { '::rhel::yum_cron':
   cron_command => '/usr/local/sbin/yum-cron &>/dev/null',
   cron_hour    => '06',
   cron_minute  => '00',

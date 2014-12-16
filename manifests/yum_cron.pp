@@ -1,4 +1,4 @@
-# Class: rhel::yum-cron
+# Class: rhel::yum_cron
 #
 # Daily yum update run from cron.
 #
@@ -18,8 +18,8 @@
 #    Cron job parameters. Default is to run as root at 10h05 AM Mon-Fri.
 #
 # Sample Usage :
-#  include yum-cron
-#  class { 'yum-cron':
+#  include '::rhel::yum_cron'
+#  class { '::rhel::yum_cron':
 #    script_source    => 'puppet:///mymodule/yum-cron-modified',
 #    cron_hour        => '06',
 #    cron_minute      => '00',
@@ -28,7 +28,7 @@
 #    cron_environment => [ 'MAILTO=root@example.com' ],
 #  }
 #
-class rhel::yum-cron (
+class rhel::yum_cron (
   $ensure           = undef,
   $script_source    = "puppet:///modules/${module_name}/yum-cron",
   $cron_command     = '/usr/local/sbin/yum-cron',
