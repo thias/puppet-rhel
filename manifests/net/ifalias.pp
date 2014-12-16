@@ -15,10 +15,10 @@
 #  }
 #
 define rhel::net::ifalias (
-  $ensure = undef,
-  $ipaddr = '',
+  $ensure  = undef,
+  $ipaddr  = '',
   $netmask = '',
-  $prefix = '',
+  $prefix  = '',
 ) {
 
   if $netmask == '' and $prefix == '' and $ensure != 'absent' {

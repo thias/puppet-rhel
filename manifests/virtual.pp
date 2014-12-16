@@ -6,13 +6,13 @@
 class rhel::virtual {
 
 # Only be relevant on virtual nodes
-if $::is_virtual == 'true' {
+if $::is_virtual == 'true' { # lint:ignore:quoted_booleans
 
   # We want virsh shutdown from the host to work
   package { 'acpid': ensure => installed }
   service { 'acpid':
+    ensure    => 'running',
     enable    => true,
-    ensure    => running,
     hasstatus => true,
     require   => Package['acpid'],
   }

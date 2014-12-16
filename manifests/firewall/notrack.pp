@@ -1,15 +1,15 @@
 define rhel::firewall::notrack (
-  $ensure = present,
   $iface,
+  $ensure = present,
   $port   = undef,
   $proto  = 'tcp',
 ) {
 
   Firewall {
-    ensure   => $ensure,
-    table    => 'raw',
-    proto    => $proto,
-    jump     => 'NOTRACK',
+    ensure => $ensure,
+    table  => 'raw',
+    proto  => $proto,
+    jump   => 'NOTRACK',
   }
 
   firewall { "${title} in":

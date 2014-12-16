@@ -26,7 +26,7 @@ define rhel::firewall::portknock (
   }
 
   # Door
-  firewall { "${prenumber}0 portknock $name knock2 goes to stg2":
+  firewall { "${prenumber}0 portknock ${name} knock2 goes to stg2":
     chain    => "KNOCK_${prefix}_DOOR",
     jump     => "KNOCK_${prefix}_STG2",
     recent   => 'rcheck',
@@ -34,7 +34,7 @@ define rhel::firewall::portknock (
     rseconds => $seconds,
   }
 
-  firewall { "${prenumber}1 portknock $name knock1 goes to stg1":
+  firewall { "${prenumber}1 portknock ${name} knock1 goes to stg1":
     chain    => "KNOCK_${prefix}_DOOR",
     jump     => "KNOCK_${prefix}_STG1",
     recent   => 'rcheck',
@@ -43,7 +43,7 @@ define rhel::firewall::portknock (
   }
 
   # Name only different by $port1 so it conflicts if reused (wanted!)
-  firewall { "${prenumber}2 portknock on port $port1 sets knock1":
+  firewall { "${prenumber}2 portknock on port ${port1} sets knock1":
     chain  => "KNOCK_${prefix}_DOOR",
     dport  => $port1,
     proto  => 'tcp',
@@ -52,13 +52,13 @@ define rhel::firewall::portknock (
   }
 
   # Stage 1
-  firewall { "${prenumber}3 portknock $name stg1 remove knock1":
+  firewall { "${prenumber}3 portknock ${name} stg1 remove knock1":
     chain  => "KNOCK_${prefix}_STG1",
     recent => 'remove',
     rname  => "${prefix}_knock1",
   }
 
-  firewall { "${prenumber}4 portknock stg1 set knock2 on $port2":
+  firewall { "${prenumber}4 portknock stg1 set knock2 on ${port2}":
     chain  => "KNOCK_${prefix}_STG1",
     dport  => $port2,
     proto  => 'tcp',
@@ -67,13 +67,13 @@ define rhel::firewall::portknock (
   }
 
   # Stage 2
-  firewall { "${prenumber}5 portknock $name stg2 remove knock1":
+  firewall { "${prenumber}5 portknock ${name} stg2 remove knock1":
     chain  => "KNOCK_${prefix}_STG2",
     recent => 'remove',
     rname  => "${prefix}_knock1",
   }
 
-  firewall { "${prenumber}6 portknock set heaven on $port3":
+  firewall { "${prenumber}6 portknock set heaven on ${port3}":
     chain  => "KNOCK_${prefix}_STG2",
     dport  => $port3,
     proto  => 'tcp',
@@ -82,9 +82,9 @@ define rhel::firewall::portknock (
   }
 
   # Let people in heaven
-  firewall { "${prenumber}7 portknock $name heaven let connections through":
+  firewall { "${prenumber}7 portknock ${name} heaven let connections through":
     action   => 'accept',
-    chain    => "INPUT",
+    chain    => 'INPUT',
     dport    => $dports,
     proto    => 'tcp',
     recent   => 'rcheck',
@@ -92,7 +92,7 @@ define rhel::firewall::portknock (
     rseconds => $seconds,
   }
 
-  firewall { "${prenumber}8 portknock $name connection initiation to door":
+  firewall { "${prenumber}8 portknock ${name} connection initiation to door":
     chain     => 'INPUT',
     dport     => [ $port1, $port2, $port3 ],
     jump      => "KNOCK_${prefix}_DOOR",
