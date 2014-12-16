@@ -1,3 +1,4 @@
+#### 2014-12-16 - 1.0.3
 * Rename yum-cron class to yum_cron to avoid forbidden character.
 * Add support for RHEL7 in rhel::epel class.
 * Clean up to make puppet lint happy.
