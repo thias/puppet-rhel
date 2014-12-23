@@ -1,3 +1,5 @@
+* Install iptables-services for firewall on RHEL7.
+
 #### 2014-12-16 - 1.0.3
 * Rename yum-cron class to yum_cron to avoid forbidden character.
 * Add support for RHEL7 in rhel::epel class.
