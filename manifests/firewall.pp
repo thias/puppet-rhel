@@ -14,11 +14,6 @@ class rhel::firewall (
 
   class { '::firewall': }
 
-  # Legacy services, not firewalld for RHEL7+
-  if versioncmp($::operatingsystemrelease, '7') >= 0 {
-    package { 'iptables-services': ensure => 'installed' }
-  }
-
   # FIXME : Until the 'firewall::linux::redhat' class gets updated...
   if $ipv6 {
     service { 'ip6tables':
