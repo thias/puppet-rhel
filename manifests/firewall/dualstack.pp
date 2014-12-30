@@ -8,7 +8,7 @@ define rhel::firewall::dualstack (
   $rules = {},
 ) {
 
-  $ipv4_hash = { $title => $rules }
+  $ipv4_hash = { "${title}" => $rules } # lint:ignore:only_variable_string
   create_resources('firewall',$ipv4_hash)
 
   # FIXME: The ip6tables doesn't have a working purge. Argh.
