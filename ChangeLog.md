@@ -1,3 +1,6 @@
+#### 2015-01-09 - 1.0.4
+* Fixes for RHEL7 iptables and unquoted hash key.
+
 #### 2014-12-16 - 1.0.3
 * Rename yum-cron class to yum_cron to avoid forbidden character.
 * Add support for RHEL7 in rhel::epel class.
