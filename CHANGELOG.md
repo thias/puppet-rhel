@@ -1,3 +1,5 @@
+* Fix firewall::masquerade by adding FORWARD rules.
+
 #### 2015-01-09 - 1.0.4
 * Fixes for RHEL7 iptables and unquoted hash key.
 
