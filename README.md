@@ -162,3 +162,15 @@ To remove it :
 class { '::rhel::epel': ensure => absent }
 ```
 
+### Systemd
+
+Manage systemd resources (initially services). The common `rhel::systemd` class
+is automatically included and will execute `systemctl daemon-reload` when
+required. Example :
+
+```puppet
+rhel::systemd::service { 'mydaemon':
+  source => "puppet:///modules/${module_name}/mydaemon.service",
+}
+```
+

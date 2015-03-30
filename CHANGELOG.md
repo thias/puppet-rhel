@@ -1,4 +1,5 @@
 * Fix firewall::masquerade by adding FORWARD rules.
+* Add systemd class and systemd::service definition.
 
 #### 2015-01-09 - 1.0.4
 * Fixes for RHEL7 iptables and unquoted hash key.
