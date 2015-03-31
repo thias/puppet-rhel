@@ -3,7 +3,7 @@
 class rhel::systemd {
 
   exec { 'systemctl daemon-reload':
-    path        => $path,
+    path        => $::path,
     refreshonly => true,
   }
 

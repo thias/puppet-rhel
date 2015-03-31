@@ -1,3 +1,5 @@
+# Class to enable IPv4 network masquerade
+#
 class rhel::firewall::masquerade (
   $prefix   = '100',
   $outiface = 'eth0',

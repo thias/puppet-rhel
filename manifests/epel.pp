@@ -1,3 +1,5 @@
+# Class to enable EPEL on Enterprise Linux
+#
 class rhel::epel (
   $ensure = undef,
   # These *will* break. But will not get fixed. See :

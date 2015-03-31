@@ -1,3 +1,6 @@
+# Definition to create firewall rules extracting parameters from the title.
+# Useful when dealing with arrays of source IP addresses and networks.
+#
 define rhel::firewall::proto_dport_source (
   $prefix = '100',
   $action = 'accept',
