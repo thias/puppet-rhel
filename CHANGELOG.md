@@ -1,3 +1,4 @@
+#### 2015-03-31 - 1.0.5
 * Fix firewall::masquerade by adding FORWARD rules.
 * Add systemd class and systemd::service definition.
 
