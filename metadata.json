@@ -1,9 +1,9 @@
 {
   "name": "thias-rhel",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Matthias Saou",
   "license": "Apache-2.0",
-  "summary": "RHEL specific configuration module",
+  "summary": "Configure Red Hat Enterprise Linux specific files and services.",
   "source": "git://github.com/thias/puppet-rhel",
   "project_page": "https://github.com/thias/puppet-rhel",
   "issues_url": "https://github.com/thias/puppet-rhel/issues",
@@ -24,7 +24,6 @@
     "version_requirement": ">=2.7.20 <4.1.0"
     }
   ],
-  "description": "Configure Red Hat Enterprise Linux specific files and services.",
   "dependencies": [
     {
     "name": "puppetlabs/stdlib",

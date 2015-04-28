@@ -1,5 +1,6 @@
-#### 2015-04-28 - 1.0.6
+#### 2015-04-28 - 1.0.7
 * Add rhel::firewall::privatesrc definition.
+* Make forge score happy.
 
 #### 2015-03-31 - 1.0.5
 * Fix firewall::masquerade by adding FORWARD rules.
