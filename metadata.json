@@ -4,8 +4,8 @@
   "author": "Matthias Saou",
   "license": "Apache-2.0",
   "summary": "RHEL specific configuration module",
-  "source": "https://github.com/thias/puppet-rhel",
-  "project_page": "https://forge.puppetlabs.com/thias/rhel",
+  "source": "git://github.com/thias/puppet-rhel",
+  "project_page": "https://github.com/thias/puppet-rhel",
   "issues_url": "https://github.com/thias/puppet-rhel/issues",
   "tags": ["rhel", "firewall", "iptables", "ip6tables", "epel", "yum", "rpm"],
   "operatingsystem_support": [
