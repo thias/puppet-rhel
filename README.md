@@ -99,6 +99,20 @@ rhel::firewall::notrack { '100 notrack http': iface => 'eth0', port => '80' }
 rhel::firewall::notrack { '110 notrack lo': iface => 'lo' }
 ```
 
+For rules source matching private IP address space, the
+`rhel::firewall::privatesrc` definition will automatically create the 3
+required IPv4 rules and the required IPv6 rule (if not disabled) :
+
+```
+rhel::firewall::privatesrc { '100 rsync':
+  rules => {
+    action => 'accept',
+    proto  => 'tcp',
+    dport  => [ '873' ],
+  },
+}
+```
+
 ### Virtual
 
 This is a class which can be safely included on all nodes, and will tweak only
