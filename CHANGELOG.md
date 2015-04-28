@@ -1,3 +1,4 @@
+#### 2015-04-28 - 1.0.6
 * Add rhel::firewall::privatesrc definition.
 
 #### 2015-03-31 - 1.0.5

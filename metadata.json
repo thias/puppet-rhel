@@ -1,6 +1,6 @@
 {
   "name": "thias-rhel",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Matthias Saou",
   "license": "Apache-2.0",
   "summary": "RHEL specific configuration module",
@@ -21,7 +21,7 @@
   "requirements": [
     {
     "name": "puppet",
-    "version_requirement": ">=2.7.20 <4.0.0"
+    "version_requirement": ">=2.7.20 <4.1.0"
     }
   ],
   "description": "Configure Red Hat Enterprise Linux specific files and services.",
