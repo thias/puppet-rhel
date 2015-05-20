@@ -3,8 +3,8 @@
 class rhel::firewall (
   $ipv6             = true,
   $icmp_limit       = false,
-  $src_ssh          = undef,
-  $src_nrpe         = undef,
+  $src_ssh          = [],
+  $src_nrpe         = [],
   $ipv4_action      = 'reject',
   $ipv4_reject_with = 'icmp-port-unreachable',
   $ipv6_action      = 'reject',
@@ -30,14 +30,14 @@ class rhel::firewall (
 
   # firewall doesn't support arrays for $source :-(
   # Take the opportunity to support a mix of IPv4/IPv6 in the array
-  if $src_ssh {
+  if $src_ssh and $src_ssh != [] {
     # a,b,c -> tcp_22_a,tcp_22_b,tcp_22_c
     $tcp_22_src = regsubst($src_ssh,'^(.+)$','tcp_22_\1')
-    proto_dport_source { $tcp_22_src: prefix => '010' }
+    rhel::firewall::proto_dport_source { $tcp_22_src: prefix => '010' }
   }
-  if $src_nrpe {
+  if $src_nrpe and $src_nrpe != [] {
     $tcp_5666_src = regsubst($src_nrpe,'^(.+)$','tcp_5666_\1')
-    proto_dport_source { $tcp_5666_src: prefix => '011' }
+    rhel::firewall::proto_dport_source { $tcp_5666_src: prefix => '011' }
   }
 
   class { '::rhel::firewall::post':

@@ -1,3 +1,5 @@
+* Compatibility fixes for Puppet 4.
+
 #### 2015-04-28 - 1.0.7
 * Add rhel::firewall::privatesrc definition.
 * Make forge score happy.
