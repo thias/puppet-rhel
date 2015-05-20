@@ -1,3 +1,4 @@
+#### 2015-05-20 - 1.0.8
 * Compatibility fixes for Puppet 4.
 
 #### 2015-04-28 - 1.0.7
