@@ -1,5 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-/usr/bin/yum -R 3  -e 0 -d 0 -y update yum
-/usr/bin/yum -R 10 -e 1 -d 1 -y update
+sleep $((RANDOM%600))
+
+if which dnf &>/dev/null; then
+  dnf -q clean expire-cache
+  dnf -q upgrade
+else
+  yum -e 1 -d 1 clean expire-cache
+  yum -e 1 -d 1 -y update
+fi
 

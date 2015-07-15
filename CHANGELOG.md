@@ -1,3 +1,5 @@
+* Force expire-cache in yum-cron and add dnf support.
+
 #### 2015-05-20 - 1.0.8
 * Compatibility fixes for Puppet 4.
 
