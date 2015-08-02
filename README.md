@@ -90,6 +90,10 @@ Masquerade class, one liner to enable masquerading of all 3 RFC1918 networks :
 
 ```puppet
 class { '::rhel::firewall::masquerade': outiface => 'br0' }
+
+Set `$return_local` to `true` to exclude RFC1918 destinations from masquarading,
+required with IPSec LAN to LAN for instance.
+
 ```
 
 NOTRACK definition, to disable connection tracking for certain ports :

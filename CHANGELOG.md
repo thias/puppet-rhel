@@ -1,3 +1,5 @@
+* Add rhel::firewall::masquerade::return_local for IPSec.
+
 #### 2015-07-15 - 1.0.9
 * Force expire-cache in yum-cron and add dnf support.
 
