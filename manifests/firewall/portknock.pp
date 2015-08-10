@@ -12,10 +12,18 @@ define rhel::firewall::portknock (
   $port2,
   $port3,
   $dports,
-  $seconds   = 3,
-  $prefix    = $name,
-  $prenumber = '80',
+  $seconds_knock = 3,
+  $seconds_open  = 3,
+  $prefix        = $name,
+  $prenumber     = '80',
 ) {
+
+  # Allow disabling seconds_open, meaning "forever" (until iptables restart)
+  if ! $seconds_open or $seconds_open == false or $seconds_open == '' {
+    $seconds_open_final = undef
+  } else {
+    $seconds_open_final = $seconds_open
+  }
 
   # We need separate chains
   firewallchain { [
@@ -31,7 +39,7 @@ define rhel::firewall::portknock (
     jump     => "KNOCK_${prefix}_STG2",
     recent   => 'rcheck',
     rname    => "${prefix}_knock2",
-    rseconds => $seconds,
+    rseconds => $seconds_knock,
   }
 
   firewall { "${prenumber}1 portknock ${name} knock1 goes to stg1":
@@ -39,7 +47,7 @@ define rhel::firewall::portknock (
     jump     => "KNOCK_${prefix}_STG1",
     recent   => 'rcheck',
     rname    => "${prefix}_knock1",
-    rseconds => $seconds,
+    rseconds => $seconds_knock,
   }
 
   # Name only different by $port1 so it conflicts if reused (wanted!)
@@ -89,7 +97,7 @@ define rhel::firewall::portknock (
     proto    => 'tcp',
     recent   => 'rcheck',
     rname    => "${prefix}_heaven",
-    rseconds => $seconds,
+    rseconds => $seconds_open_final,
   }
 
   firewall { "${prenumber}8 portknock ${name} connection initiation to door":
