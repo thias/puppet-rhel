@@ -192,3 +192,28 @@ rhel::systemd::service { 'mydaemon':
 }
 ```
 
+### AIDE
+
+Monitor file structure and content changes using AIDE. Use the `rhel::aide`
+definition with a descriptive title and an array of valid `aide.conf` lines
+for the `$lines` parameter. Example :
+
+```puppet
+rhel::aide { 'www':
+  cron_mailto => 'webmaster@example.com',
+  cron_minute => '*/10',
+  lines       => [
+    # LSPP same as normal, but excluding one extra hash (smaller db)
+    '/var/www/htpasswd        LSPP',
+    '/var/www/www.example.com LSPP',
+    # These are not relevant
+    '!/var/www/www.example.com/shared',
+    '!/var/www/www.example.com/tmp',
+  ],
+}
+```
+
+The default cron job is run hourly, but most cron parameters may be overridden.
+See the `aide.conf(5)` manual page and the example `/etc/aide.conf` file for
+help on the lines syntax.
+

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ -z "$1" -o ! -f "/etc/aide/$1.conf" ]; then
+  echo "You must pass the configuration basename. See files in /etc/aide/."
+  exit 1
+fi
+
+TITLE="$1"
+
+CONF="/etc/aide/${TITLE}.conf"
+DB_CUR="/var/lib/aide/${TITLE}.db.gz"
+DB_NEW="/var/lib/aide/${TITLE}.db.new.gz"
+AIDE="/usr/sbin/aide -c ${CONF}"
+
+# Silent init if we don't yet have a db
+if [ ! -f ${DB_CUR} ]; then
+  ${AIDE} --init >/dev/null
+  mv "${DB_NEW}" "${DB_CUR}"
+fi
+
+# Update and output only if non-zero exit status (changed detected)
+OUTPUT="`${AIDE} --update 2>&1`"
+RETVAL=$?
+if [ $RETVAL -ne 0 ]; then
+  echo "$OUTPUT"
+  mv -f "${DB_CUR}" "${DB_CUR}.$(date --utc --iso-8601=minutes)"
+  mv -f "${DB_NEW}" "${DB_CUR}"
+else
+  # No changes, the new db isn't useful
+  rm -f "${DB_NEW}"
+fi
+
+exit $RETVAL

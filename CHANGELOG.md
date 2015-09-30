@@ -1,5 +1,6 @@
 * Add rhel::firewall::masquerade::return_local for IPSec.
 * Split $seconds into $seconds_knock and $seconds_open for portknock.
+* Add rhel::aide definition to monitor and report filesystem changes.
 
 #### 2015-07-15 - 1.0.9
 * Force expire-cache in yum-cron and add dnf support.
