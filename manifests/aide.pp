@@ -29,7 +29,7 @@ define rhel::aide (
   if $cron_mailto {
     $cron_environment = [ "MAILTO=${cron_mailto}" ]
   } else {
-    $cron_environment = []
+    $cron_environment = undef
   }
 
   cron { "aide-${title}":
