@@ -1,3 +1,5 @@
+* Add chmod exec to remove +x from ebtables.service to avoid noise in logs.
+
 #### 2015-10-15 - 1.0.10
 * Add rhel::firewall::masquerade::return_local for IPSec.
 * Split $seconds into $seconds_knock and $seconds_open for portknock.
