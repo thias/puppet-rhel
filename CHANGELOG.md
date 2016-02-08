@@ -1,3 +1,4 @@
+#### 2016-02-08 - 1.0.11
 * Add chmod exec to remove +x from ebtables.service to avoid noise in logs.
 
 #### 2015-10-15 - 1.0.10
