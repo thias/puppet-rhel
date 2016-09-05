@@ -33,6 +33,7 @@ define rhel::aide (
   }
 
   cron { "aide-${title}":
+    ensure      => $cron_ensure,
     command     => "/usr/local/sbin/aide-cron ${title}",
     user        => 'root',
     environment => $cron_environment,
