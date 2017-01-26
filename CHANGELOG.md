@@ -1,3 +1,7 @@
+#### 2017-01-26 - 1.0.12
+* Use previously defined $cron_ensure parameter (#3 @lisuml).
+* Fix unknown variable warning for final_dport.
+
 #### 2016-02-08 - 1.0.11
 * Add chmod exec to remove +x from ebtables.service to avoid noise in logs.
 
