@@ -21,7 +21,7 @@
   "requirements": [
     {
     "name": "puppet",
-    "version_requirement": ">=2.7.20 <5.4.0"
+    "version_requirement": ">=4.0.0 <5.4.0"
     }
   ],
   "dependencies": [
