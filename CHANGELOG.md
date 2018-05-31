@@ -1,3 +1,6 @@
+#### 2018-05-31 - 1.0.13
+* Allow masquerading multiple interfaces (#3, @forgodssake).
+
 #### 2017-01-26 - 1.0.12
 * Use previously defined $cron_ensure parameter (#3 @lisuml).
 * Fix unknown variable warning for final_dport.
