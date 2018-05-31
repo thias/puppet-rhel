@@ -12,9 +12,6 @@ Configure Red Hat Enterprise Linux specific files and services.
 
 See http://forge.puppetlabs.com/puppetlabs/firewall
 
-**NOTE** : IPv6 ip6tables rules cannot be purged as of October 2013, and there
-seems to be very limited interest in fixing this.
-
 The firewall classes will provide you with the same configuration as an
 original RHEL installation, with ICMP and lo traffic allowed, stateful
 connections allowed, and all the rest rejected (not dropped). Note that ssh

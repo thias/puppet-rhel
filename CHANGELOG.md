@@ -1,3 +1,6 @@
+#### 2018-05-31 - 1.0.14
+* Fix IPv6 service conflict, the firewall module has been fixed long ago.
+
 #### 2018-05-31 - 1.0.13
 * Allow masquerading multiple interfaces (#3, @forgodssake).
 
