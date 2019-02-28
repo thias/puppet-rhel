@@ -1,3 +1,5 @@
+* Add rhel*_kernelrelease facts.
+
 #### 2018-05-31 - 1.0.14
 * Fix IPv6 service conflict, the firewall module has been fixed long ago.
 

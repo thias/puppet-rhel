@@ -8,6 +8,11 @@ Configure Red Hat Enterprise Linux specific files and services.
 
 ## Features
 
+### Facts
+
+* `rhel_kernelrelease`: RHEL kernel release, i.e. '957' for `3.10.0-957.5.1.el7`
+* `rhelX_kernelrelease`: RHEL version X kernel release, useful for inventorying.
+
 ### Firewall
 
 See http://forge.puppetlabs.com/puppetlabs/firewall
