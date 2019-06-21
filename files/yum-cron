@@ -3,8 +3,8 @@
 sleep $((RANDOM%600))
 
 if which dnf &>/dev/null; then
-  dnf -y clean expire-cache
-  dnf -y upgrade
+  dnf -e 1 -d 1 -y clean expire-cache
+  dnf -e 1 -d 1 -y upgrade
 else
   yum -e 1 -d 1 clean expire-cache
   yum -e 1 -d 1 -y update
