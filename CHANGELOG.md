@@ -1,3 +1,6 @@
+#### 2019-06-27 - 1.0.16
+* Add proper yum-cron support for dnf, using dnf-automatic.
+
 #### 2019-02-28 - 1.0.15
 * Add rhel*_kernelrelease facts.
 

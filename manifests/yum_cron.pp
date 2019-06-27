@@ -39,6 +39,18 @@ class rhel::yum_cron (
   $cron_environment = undef,
 ) {
 
+  # Plain 'dnf' has changed stdout/stderr and debug levels quite a bit, so
+  # use dnf-automatic which is meant for this.
+  if $::package_provider == 'dnf' {
+    package { 'dnf-automatic': ensure => 'installed' } ->
+    file { '/etc/dnf/automatic.conf':
+      source => "puppet:///modules/${module_name}/dnf-automatic.conf",
+      mode   => '0644',
+      owner  => 'root',
+      group  => 'root',
+    }
+  }
+
   file { '/usr/local/sbin/yum-cron':
     ensure => $ensure,
     source => $script_source,

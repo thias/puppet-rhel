@@ -4,7 +4,7 @@ sleep $((RANDOM%600))
 
 if which dnf &>/dev/null; then
   dnf -q clean expire-cache
-  dnf -q upgrade
+  dnf-automatic >/dev/null
 else
   yum -e 1 -d 1 clean expire-cache
   yum -e 1 -d 1 -y update
