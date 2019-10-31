@@ -105,6 +105,19 @@ rhel::firewall::notrack { '100 notrack http': iface => 'eth0', port => '80' }
 rhel::firewall::notrack { '110 notrack lo': iface => 'lo' }
 ```
 
+Proxy network, in addition of accept rules, will require an extra setup, e.g.
+```
+rhel::firewall::notrack { '100 notrack http':
+  iface   => 'eth0',
+  port    => '80'
+}
+rhel::firewall::notrack { '110 notrack http':
+  iface   => 'eth1',
+  port    => '80',
+  outbound => true,
+}
+```
+
 For rules source matching private IP address space, the
 `rhel::firewall::privatesrc` definition will automatically create the 3
 required IPv4 rules and the required IPv6 rule (if not disabled) :
