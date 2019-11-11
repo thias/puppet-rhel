@@ -1,3 +1,6 @@
+#### 2019-11-11 - 1.0.17
+* Add outbound option to notrack (#6, @edupr91).
+
 #### 2019-06-27 - 1.0.16
 * Add proper yum-cron support for dnf, using dnf-automatic.
 

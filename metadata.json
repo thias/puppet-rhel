@@ -1,6 +1,6 @@
 {
   "name": "thias-rhel",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "author": "Matthias Saou",
   "license": "Apache-2.0",
   "summary": "Configure Red Hat Enterprise Linux specific files and services.",
