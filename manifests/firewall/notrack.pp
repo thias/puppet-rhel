@@ -2,9 +2,10 @@
 #
 define rhel::firewall::notrack (
   $iface,
-  $ensure = present,
-  $port   = undef,
-  $proto  = 'tcp',
+  $ensure    = present,
+  $port      = undef,
+  $proto     = 'tcp',
+  $outbound  = false,
 ) {
 
   Firewall {
@@ -13,17 +14,28 @@ define rhel::firewall::notrack (
     proto  => $proto,
     jump   => 'NOTRACK',
   }
-
-  firewall { "${title} in":
-    chain   => 'PREROUTING',
-    dport   => $port,
-    iniface => $iface,
+  if $outbound {
+    firewall { "${title} in":
+      chain   => 'PREROUTING',
+      sport   => $port,
+      iniface => $iface,
+    }
+    firewall { "${title} out":
+      chain    => 'OUTPUT',
+      dport    => $port,
+      outiface => $iface,
+    }
+  } else {
+    firewall { "${title} in":
+      chain   => 'PREROUTING',
+      dport   => $port,
+      iniface => $iface,
+    }
+    firewall { "${title} out":
+      chain    => 'OUTPUT',
+      sport    => $port,
+      outiface => $iface,
+    }
   }
-  firewall { "${title} out":
-    chain    => 'OUTPUT',
-    sport    => $port,
-    outiface => $iface,
-  }
-
 }
 
