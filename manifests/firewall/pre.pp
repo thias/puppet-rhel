@@ -20,7 +20,9 @@ class rhel::firewall::pre (
 
   # Different protocols, icmp vs. ipv6-icmp
   if $icmp_limit != false {
-    validate_re($icmp_limit, '^\d+$', '$icmp_limit must be an integer')
+    if $icmp_limit !~ Integer {
+      fail('$icmp_limit must be an integer')
+    }
     firewall { '002 icmp drop timestamp-request':
       action => 'drop',
       chain  => 'INPUT',
