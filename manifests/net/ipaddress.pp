@@ -24,7 +24,7 @@ define rhel::net::ipaddress (
   $ipaddr = $title
   if $ipaddr =~ Stdlib::IP::Address::V4::CIDR {
     $proto = 'ipv4'
-  } elsif $ipaddr =~ Stdlib::IP::Address::V6::Nosubnet::Compressed {
+  } elsif $ipaddr =~ Stdlib::IP::Address::V6::CIDR {
     $proto = 'ipv6'
   } else {
     fail('Invalid IP address. Must be valid and include prefix.')
