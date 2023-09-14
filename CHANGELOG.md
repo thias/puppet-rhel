@@ -1,4 +1,5 @@
 * Add new rhel::net::ipaddress to replace rhel::net::ifalias on RHEL9+
+* Exclude containers from what 'virtual' applies (acpid not relevant there).
 
 #### 2019-11-11 - 1.0.17
 * Add outbound option to notrack (#6, @edupr91).

@@ -5,18 +5,17 @@
 #
 class rhel::virtual {
 
-  # Only be relevant on virtual nodes
-  if str2bool($::is_virtual) {
+  # Only be relevant on VMs (but not containers)
+  if str2bool($::is_virtual) and $::virtual != 'lxc' {
 
     # We want virsh shutdown from the host to work
-    package { 'acpid': ensure => installed }
-    service { 'acpid':
+    package { 'acpid': ensure => 'installed' }
+    ~> service { 'acpid':
       ensure    => 'running',
       enable    => true,
       hasstatus => true,
-      require   => Package['acpid'],
     }
 
-  } # if is_virtual
+  }
 
 }
