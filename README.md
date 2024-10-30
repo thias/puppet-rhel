@@ -232,3 +232,9 @@ The default cron job is run hourly, but most cron parameters may be overridden.
 See the `aide.conf(5)` manual page and the example `/etc/aide.conf` file for
 help on the lines syntax.
 
+### Umask
+
+RHEL9 removed the less strict umask for users with a default private group.
+Including this class restore the previous behavior, keeping ACLs working
+thanks to the g+w mode.
+
