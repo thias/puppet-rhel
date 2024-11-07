@@ -1,6 +1,7 @@
+#### 2024-11-07 - 1.0.19
 * Add umask class to restore pre-RHEL9 default umask behavior.
 
-### 2023-09-14 - 1.0.18
+#### 2023-09-14 - 1.0.18
 * Add new rhel::net::ipaddress to replace rhel::net::ifalias on RHEL9+
 * Exclude containers from what 'virtual' applies (acpid not relevant there).
 
