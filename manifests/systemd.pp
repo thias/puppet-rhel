@@ -3,7 +3,7 @@
 class rhel::systemd {
 
   exec { 'systemctl daemon-reload':
-    path        => $::path,
+    path        => $facts['path'],
     refreshonly => true,
   }
 
@@ -13,7 +13,7 @@ class rhel::systemd {
   # Remove executable bit to avoid noise in logs, still in 2.0.10-13.el7 (7.2)
   exec { 'chmod -x /usr/lib/systemd/system/ebtables.service':
     onlyif => 'test -x /usr/lib/systemd/system/ebtables.service',
-    path   => $::path,
+    path   => $facts['path'],
   }
 
 }

@@ -17,7 +17,7 @@ define rhel::net::ipaddress (
   $ensure = undef,
 ) {
 
-  if versioncmp($::operatingsystemmajrelease,'9') < 0 {
+  if versioncmp($facts['os']['release']['major'],'9') < 0 {
     fail('This definition relies on NetworkManager system-connections.')
   }
 
@@ -34,7 +34,7 @@ define rhel::net::ipaddress (
   # bridge members and leave VMs with no network connectivity.
   # The manual "ip" approach is quite fragile, but there is no better way.
 
-  Exec { path => $::path }
+  Exec { path => $facts['path'] }
 
   if $ensure == 'absent' {
 

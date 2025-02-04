@@ -1,4 +1,5 @@
 * Add explicit dnf makecache after expiring it.
+* Remove legacy facts usage.
 
 #### 2024-11-07 - 1.0.19
 * Add umask class to restore pre-RHEL9 default umask behavior.

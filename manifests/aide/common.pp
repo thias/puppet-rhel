@@ -1,3 +1,5 @@
+# Trivial class to prepare aide and not much more
+#
 class rhel::aide::common {
 
   package { 'aide': ensure => 'installed' }

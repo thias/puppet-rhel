@@ -4,7 +4,7 @@ class rhel::umask (
 ) {
 
   # No need to apply on RHEL prior to 9
-  if versioncmp($::operatingsystemrelease, '9') >= 0 {
+  if versioncmp($facts['os']['release']['major'], '9') >= 0 {
     file { '/etc/profile.d/umask.sh':
       ensure => $ensure,
       owner  => 'root',
