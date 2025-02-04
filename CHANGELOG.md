@@ -1,3 +1,4 @@
+#### 2025-02-04 - 1.0.20
 * Add explicit dnf makecache after expiring it.
 * Remove legacy facts usage.
 
