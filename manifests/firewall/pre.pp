@@ -11,10 +11,10 @@ class rhel::firewall::pre (
   rhel::firewall::dualstack { '001 state related established accept':
     ipv6  => $ipv6,
     rules => {
-      action => 'accept',
-      chain  => 'INPUT',
-      proto  => 'all',
-      state  => [ 'RELATED', 'ESTABLISHED' ],
+      jump  => 'accept',
+      chain => 'INPUT',
+      proto => 'all',
+      state => [ 'RELATED', 'ESTABLISHED' ],
     },
   }
 
@@ -24,49 +24,49 @@ class rhel::firewall::pre (
       fail('$icmp_limit must be an integer')
     }
     firewall { '002 icmp drop timestamp-request':
-      action => 'drop',
-      chain  => 'INPUT',
-      icmp   => 'timestamp-request',
-      proto  => 'icmp',
+      jump  => 'drop',
+      chain => 'INPUT',
+      icmp  => 'timestamp-request',
+      proto => 'icmp',
     }
     firewall { '003 icmp limit rate':
-      action => 'accept',
-      chain  => 'INPUT',
-      limit  => "${icmp_limit}/sec",
-      proto  => 'icmp',
+      jump  => 'accept',
+      chain => 'INPUT',
+      limit => "${icmp_limit}/sec",
+      proto => 'icmp',
     }
     firewall { '004 icmp drop':
-      action => 'drop',
-      chain  => 'INPUT',
-      proto  => 'icmp',
+      jump  => 'drop',
+      chain => 'INPUT',
+      proto => 'icmp',
     }
     if $ipv6 {
       firewall { '003 ipv6-icmp limit rate':
-        action   => 'accept',
+        jump     => 'accept',
         chain    => 'INPUT',
         limit    => "${icmp_limit}/sec",
         proto    => 'ipv6-icmp',
-        provider => 'ip6tables',
+        protocol => 'ip6tables',
       }
       firewall { '004 ipv6-icmp drop':
-        action   => 'drop',
+        jump     => 'drop',
         chain    => 'INPUT',
         proto    => 'ipv6-icmp',
-        provider => 'ip6tables',
+        protocol => 'ip6tables',
       }
     }
   } else {
     firewall { '003 icmp accept':
-      action => 'accept',
-      chain  => 'INPUT',
-      proto  => 'icmp',
+      jump  => 'accept',
+      chain => 'INPUT',
+      proto => 'icmp',
     }
     if $ipv6 {
       firewall { '003 ipv6-icmp accept':
-        action   => 'accept',
+        jump     => 'accept',
         chain    => 'INPUT',
         proto    => 'ipv6-icmp',
-        provider => 'ip6tables',
+        protocol => 'ip6tables',
       }
     }
   }
@@ -74,7 +74,7 @@ class rhel::firewall::pre (
   rhel::firewall::dualstack { '005 lo accept':
     ipv6  => $ipv6,
     rules => {
-      action  => 'accept',
+      jump    => 'accept',
       chain   => 'INPUT',
       iniface => 'lo',
       proto   => 'all',

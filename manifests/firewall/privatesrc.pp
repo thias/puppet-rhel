@@ -28,7 +28,7 @@ define rhel::firewall::privatesrc (
     $ipv6_hash = { "${title} ipv6" => $rules }
     $ipv6_parameter = {
       source   => 'fc00::/7',
-      provider => 'ip6tables',
+      protocol => 'ip6tables',
     }
     create_resources('firewall',$ipv6_hash,$ipv6_parameter)
   }

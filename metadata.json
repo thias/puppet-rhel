@@ -11,11 +11,11 @@
   "operatingsystem_support": [
     {
     "operatingsystem": "RedHat",
-    "operatingsystemrelease": [ "5", "6", "7", "8", "9" ]
+    "operatingsystemrelease": [ "5", "6", "7", "8", "9", "10" ]
     },
     {
     "operatingsystem": "CentOS",
-    "operatingsystemrelease": [ "5", "6", "7", "8", "9" ]
+    "operatingsystemrelease": [ "5", "6", "7", "8", "9", "10" ]
     }
   ],
   "requirements": [
@@ -31,7 +31,7 @@
     },
     {
     "name": "puppetlabs/firewall",
-    "version_requirement": ">= 1.9.0"
+    "version_requirement": ">= 7.0.0"
     }
   ]
 }

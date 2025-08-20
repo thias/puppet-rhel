@@ -2,10 +2,10 @@
 # Useful when dealing with arrays of source IP addresses and networks.
 #
 define rhel::firewall::proto_dport_source (
+  $ensure = 'present',
   $prefix = '100',
-  $action = 'accept',
+  $jump   = 'accept',
   $chain  = 'INPUT',
-  $ensure = present,
 ) {
 
   $proto  = regsubst($title,'^([^_]+)_([^_]*)_([^_]+)$','\1')
@@ -20,19 +20,19 @@ define rhel::firewall::proto_dport_source (
   }
 
   if $source =~ /:/ {
-    $provider = 'ip6tables'
+    $protocol = 'ip6tables'
   } else {
-    $provider = 'iptables'
+    $protocol = 'iptables'
   }
 
   firewall { "${prefix} ${proto}/${dport} from ${source}":
     ensure   => $ensure,
-    action   => $action,
+    jump     => $jump,
     chain    => $chain,
     dport    => $final_dport,
     proto    => $proto,
     source   => $source,
-    provider => $provider,
+    protocol => $protocol,
   }
 
 }

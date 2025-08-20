@@ -5,9 +5,9 @@ class rhel::firewall (
   $icmp_limit       = false,
   $src_ssh          = [],
   $src_nrpe         = [],
-  $ipv4_action      = 'reject',
+  $ipv4_jump        = 'reject',
   $ipv4_reject_with = 'icmp-port-unreachable',
-  $ipv6_action      = 'reject',
+  $ipv6_jump        = 'reject',
   $ipv6_reject_with = 'icmp6-port-unreachable',
   $portknock        = {},
 ) {
@@ -33,9 +33,9 @@ class rhel::firewall (
 
   class { '::rhel::firewall::post':
     ipv6             => $ipv6,
-    ipv4_action      => $ipv4_action,
+    ipv4_jump        => $ipv4_jump,
     ipv4_reject_with => $ipv4_reject_with,
-    ipv6_action      => $ipv6_action,
+    ipv6_jump        => $ipv6_jump,
     ipv6_reject_with => $ipv6_reject_with,
   }
 

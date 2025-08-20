@@ -46,7 +46,7 @@ class rhel::firewall::masquerade (
     }
 
     firewall { "${prefix} forward out through ${iface}":
-      action   => 'accept',
+      jump     => 'accept',
       chain    => 'FORWARD',
       outiface => $iface,
       table    => 'filter',
@@ -76,9 +76,9 @@ class rhel::firewall::masquerade (
 
   # Common rules
   firewall { "${prefix} state related established accept":
-    action => 'accept',
-    chain  => 'FORWARD',
-    state  => [ 'RELATED', 'ESTABLISHED' ],
+    jump  => 'accept',
+    chain => 'FORWARD',
+    state => [ 'RELATED', 'ESTABLISHED' ],
   }
 }
 

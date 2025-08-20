@@ -91,7 +91,7 @@ define rhel::firewall::portknock (
 
   # Let people in heaven
   firewall { "${prenumber}7 portknock ${name} heaven let connections through":
-    action   => 'accept',
+    jump     => 'accept',
     chain    => 'INPUT',
     dport    => $dports,
     proto    => 'tcp',

@@ -2,43 +2,43 @@
 #
 class rhel::firewall::post (
   $ipv6,
-  $ipv4_action,
+  $ipv4_jump,
   $ipv4_reject_with,
-  $ipv6_action,
+  $ipv6_jump,
   $ipv6_reject_with,
 ) {
 
   # Break dependency cycle
   Firewall { before => undef }
 
-  if $ipv4_action == 'reject' { $ipv4_reject = $ipv4_reject_with }
+  if $ipv4_jump == 'reject' { $ipv4_reject = $ipv4_reject_with }
   firewall { '998 last input':
-    action => $ipv4_action,
+    jump   => $ipv4_jump,
     chain  => 'INPUT',
     proto  => 'all',
     reject => $ipv4_reject,
   }
   firewall { '999 last forward':
-    action => $ipv4_action,
+    jump   => $ipv4_jump,
     chain  => 'FORWARD',
     proto  => 'all',
     reject => $ipv4_reject,
   }
 
   if $ipv6 {
-    if $ipv6_action == 'reject' { $ipv6_reject = $ipv6_reject_with }
+    if $ipv6_jump == 'reject' { $ipv6_reject = $ipv6_reject_with }
     firewall { '998 last input ipv6':
-      action   => $ipv6_action,
+      jump     => $ipv6_jump,
       chain    => 'INPUT',
       proto    => 'all',
-      provider => 'ip6tables',
+      protocol => 'ip6tables',
       reject   => $ipv6_reject,
     }
     firewall { '999 last forward ipv6':
-      action   => $ipv6_action,
+      jump     => $ipv6_jump,
       chain    => 'FORWARD',
       proto    => 'all',
-      provider => 'ip6tables',
+      protocol => 'ip6tables',
       reject   => $ipv6_reject,
     }
   }

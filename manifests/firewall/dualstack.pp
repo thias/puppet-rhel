@@ -14,7 +14,7 @@ define rhel::firewall::dualstack (
   # FIXME: The ip6tables doesn't have a working purge. Argh.
   if $ipv6 {
     $ipv6_hash = { "${title} ipv6" => $rules }
-    $ipv6_parameter = { 'provider' => 'ip6tables' }
+    $ipv6_parameter = { 'protocol' => 'ip6tables' }
     create_resources('firewall',$ipv6_hash,$ipv6_parameter)
   }
 
