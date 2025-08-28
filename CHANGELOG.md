@@ -1,3 +1,4 @@
+#### 2025-08-28 - 1.1.1
 * Add rhel::systemd::service_d to make service overrides easier.
 
 #### 2025-08-21 - 1.1.0
